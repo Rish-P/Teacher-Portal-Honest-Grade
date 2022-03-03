@@ -1,60 +1,79 @@
 import TextField from '@mui/material/TextField';
-import React, { useState,useEffect } from "react";
-import {Button, Box, Select} from '@mui/material'
+import React, {useState, useEffect} from "react";
+import {Button, Box} from '@mui/material'
 import axios from 'axios'
+import Select from 'react-select'
 
-const Teacher = () => {
-  const [student, setStudent] = useState('')
-  const [selectedClass, setSelectedClass] = useState('')
-  const [classes, setClasses] = useState([])
-  useEffect(()=>{
-    //get the classes
-    axios.post('https://honestgrade.herokuapp.com/class/get',{
-        teacher:'612923ef022ffa2284465389'
-    })
-    .then(res=>{
-      const temp = res.data.classes
-      setClasses([...temp])
-    })
-    .catch(err=>console.log(err))
-  },[])
-  const onTextChange = (e) => setStudent(e.target.value);
-  const changeClass = (e) => setSelectedClass(e);
-  const handleSubmit = () => {
-    axios.post('https://honestgrade.herokuapp.com/student/add',{
-        studentName:student,
-        classes:["61292731e4341604f0fbbf15"]
-    })
-    .then(res=>console.log(res.data))
-    .catch(err=>console.log(err))
-  };
-  const boxStyles = {
-    display:'flex',
-    flexDirection:'column',
-    width:'20%',
-    margin:'3%'
-}
+const Student = () => {
+    const [student, setStudent] = useState('')
+    const [selectedClass, setSelectedClass] = useState({})
+    const [classes, setClasses] = useState([])
+    const [userID, setUserID] = useState('');
+    const [password, setPassword] = useState('')
 
-  return (
-    <Box style={boxStyles}>
-      <h2>Add Student</h2>
+    useEffect(() => {
+        //get the classes
+        axios.post('https://honestgrade.herokuapp.com/class/get', {
+            teacher: '612923ef022ffa2284465389'
+        })
+            .then(res => {
+                const temp = res.data.classes
+                let arr = []
+                temp.forEach(t=>{
+                    arr.push({value:t._id,label:t.name})
+                })
+                setClasses(arr)
+            })
+            .catch(err => console.log(err))
+    }, [])
+    const onSelectedClassChange = (e) => {
+        console.log("SELECTED CLASS CHANGED to",e)
+        setSelectedClass(e)
+    }
+    const onStudentNameChange = (e) => setStudent(e.target.value);
+    const onUserIDChange = (e) => setUserID(e.target.value);
+    const onPasswordChange = (e) => setPassword(e.target.value);
 
-      <TextField
-        onChange={onTextChange}
-        value={student}
-        label={"Student Name"} //optional
-      />
-      <Select
-                name="form-field-name"
-                value={selectedClass}
-                onChange={changeClass}
-                searchable={false}
-                options={classes}    
-                style={{marginBottom:'5%'}}
+    const handleSubmit = () => {
+        axios.post('https://honestgrade.herokuapp.com/student/add', {
+            studentName: student,
+            classes: [selectedClass.value],
+            userID: userID,
+            password: password
+        })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+    };
+    const boxStyles = {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '20%',
+        margin: '3%'
+    }
+
+    return (
+        <Box style={boxStyles}>
+            <h2>Add Student</h2>
+
+            <TextField
+                onChange={onStudentNameChange}
+                value={student}
+                label={"Student Name"} //optional
             />
-      <Button variant='contained' onClick={handleSubmit}>Submit</Button>
-    </Box>
-  )
+            <TextField
+                onChange={onUserIDChange}
+                value={userID}
+                label={"UserID"} //optional
+            />
+            <TextField
+                onChange={onPasswordChange}
+                value={password}
+                label={"password"} //optional
+            />
+            <Select options={classes} onChange={onSelectedClassChange}/>
+            <Button variant='contained' onClick={handleSubmit}>Add Student</Button>
+        </Box>
+    )
 }
- 
-export default Teacher;
+
+export default Student;
