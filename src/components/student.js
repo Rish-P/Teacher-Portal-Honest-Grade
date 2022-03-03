@@ -62,12 +62,12 @@ const Student = () => {
             />
             <TextField
                 onChange={onUserIDChange}
-                value={student}
+                value={userID}
                 label={"UserID"} //optional
             />
             <TextField
                 onChange={onPasswordChange}
-                value={student}
+                value={password}
                 label={"password"} //optional
             />
             <Select options={classes} onChange={onSelectedClassChange}/>
