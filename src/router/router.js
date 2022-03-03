@@ -8,6 +8,7 @@ import Exam from '../components/exam'
 import Student from '../components/student'
 import Class from '../components/class'
 import Topics from '../components/topics'
+import Login from '../components/login'
 
 const ReactRouter = () => {
     return (
@@ -20,6 +21,7 @@ const ReactRouter = () => {
         <Route  path="/student" component={Student} />
         <Route  path="/class" component={Class} />
         <Route  path="/topics" component={Topics} />
+        <Route  path="/login" component={Login} />
       </React.Fragment>
     );
   }
