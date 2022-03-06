@@ -14,23 +14,24 @@ import ViewQuestions from '../components/viewQuestions'
 import ViewClasses from '../components/viewClasses';
 import ViewClassById from '../components/viewClassById'
 import ViewExamById from  '../components/viewExamById'
+import PrivateRoute from "../utils/PrivateRoute";
 
 const ReactRouter = () => {
     return (
         <React.Fragment>
             <Header/>
-            <Route exact path="/" component={App}/>
-            <Route path="/teacher" component={Teacher}/>
-            <Route exact path="/question" component={Question}/>
-            <Route exact path="/question/subjective" component={SubjectiveQuestion}/>
-            <Route exact path="/question/view" component={ViewQuestions}/>
-            <Route exact path="/exam" component={Exam}/>
-            <Route exact path='/exam/view/:id' component={ViewExamById}/>
-            <Route path="/student" component={Student}/>
-            <Route exact path="/class" component={Class}/>
-            <Route exact path="/class/view" component={ViewClasses}/>
-            <Route exact path="/class/view/:id" component={ViewClassById}/>
-            <Route path="/topics" component={Topics}/>
+            <PrivateRoute exact path="/" component={App}/>
+            <PrivateRoute path="/teacher" component={Teacher}/>
+            <PrivateRoute exact path="/question" component={Question}/>
+            <PrivateRoute exact path="/question/subjective" component={SubjectiveQuestion}/>
+            <PrivateRoute exact path="/question/view" component={ViewQuestions}/>
+            <PrivateRoute exact path="/exam" component={Exam}/>
+            <PrivateRoute exact path='/exam/view/:id' component={ViewExamById}/>
+            <PrivateRoute path="/student" component={Student}/>
+            <PrivateRoute exact path="/class" component={Class}/>
+            <PrivateRoute exact path="/class/view" component={ViewClasses}/>
+            <PrivateRoute exact path="/class/view/:id" component={ViewClassById}/>
+            <PrivateRoute path="/topics" component={Topics}/>
             <Route path="/login" component={Login}/>
         </React.Fragment>
     );
