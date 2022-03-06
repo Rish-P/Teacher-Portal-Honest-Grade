@@ -1,6 +1,4 @@
-import React,{useState} from 'react'
-import axios from 'axios'
-import {BrowserRouter as Router} from 'react-router-dom'
+import React from 'react'
 
 
 function App() {
