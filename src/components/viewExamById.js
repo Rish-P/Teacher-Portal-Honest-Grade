@@ -24,7 +24,11 @@ const ViewExamById = (props) => {
             })
             .catch(err => console.log(err))
     }, [])
-    console.log("QUESTIONS",examData)
+    let clickAssessment = (val)=>{
+        let link = "/assessment/view/"+val;
+        props.history.push(link)
+    }
+
     return (
         <Box style={{margin: 25}}>
             Exam Details
@@ -38,7 +42,7 @@ const ViewExamById = (props) => {
             }
             <h3>Turn Ins:{assessmentData.length}</h3>
             <h3>Assessment Data</h3>
-            {assessmentData.map(a => <h2>{a.student.name} - {a.violationCount ? a.violationCount : 0}</h2>)}
+            {assessmentData.map(a => <div onClick={clickAssessment(a._id)}><h2>{a.student.name} - {a.violationCount ? a.violationCount : 0}</h2></div>)}
         </Box>)
 }
 
