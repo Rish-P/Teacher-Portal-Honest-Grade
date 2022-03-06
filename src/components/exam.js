@@ -229,58 +229,74 @@ const Exam = () => {
 		refetchTableData(selectedTopic, e);
 	};
 	const addQuestion = (event, selectedRow) => {
-		setAddedData((prevState) => {
-			const dataCopy = [...prevState];
-			if (dataCopy.indexOf(selectedRow) == -1) {
-				setDifficulty((prevState) => {
-					const dataCopy = { ...prevState };
-					if (selectedRow.difficulty === 2) {
-						if (dataCopy[selectedRow.difficulty] < total)
-							dataCopy[selectedRow.difficulty]++;
-						else
-							alert(
-								'You have added the total number of questions needed for this difficulty level'
-							);
-					} else if (
+		if (value === 'objective') {
+			setAddedData((prevState) => {
+				const dataCopy = [...prevState];
+				if (dataCopy.indexOf(selectedRow) == -1) {
+					setDifficulty((prevState) => {
+						const dataCopy = { ...prevState };
+						if (selectedRow.difficulty === 2) {
+							if (dataCopy[selectedRow.difficulty] < total)
+								dataCopy[selectedRow.difficulty]++;
+							else
+								alert(
+									'You have added the total number of questions needed for this difficulty level'
+								);
+						} else if (
+							selectedRow.difficulty === 1 ||
+							selectedRow.difficulty === 3
+						) {
+							if (dataCopy[selectedRow.difficulty] < total - 2)
+								dataCopy[selectedRow.difficulty]++;
+							else
+								alert(
+									'You have added the total number of questions needed for this difficulty level'
+								);
+						}
+						return dataCopy;
+					});
+					if (
 						selectedRow.difficulty === 1 ||
 						selectedRow.difficulty === 3
 					) {
-						if (dataCopy[selectedRow.difficulty] < total - 2)
-							dataCopy[selectedRow.difficulty]++;
-						else
-							alert(
-								'You have added the total number of questions needed for this difficulty level'
-							);
+						if (difficulty[selectedRow.difficulty] < total - 2)
+							dataCopy.push(selectedRow);
+					} else {
+						if (difficulty[selectedRow.difficulty] < total)
+							dataCopy.push(selectedRow);
 					}
-					return dataCopy;
-				});
-				if (
-					selectedRow.difficulty === 1 ||
-					selectedRow.difficulty === 3
-				) {
-					if (difficulty[selectedRow.difficulty] < total - 2)
-						dataCopy.push(selectedRow);
-				} else {
-					if (difficulty[selectedRow.difficulty] < total)
-						dataCopy.push(selectedRow);
 				}
-			}
-			return dataCopy;
-		});
-	};
-	console.log(difficulty);
-	const deleteQuestion = (event, selectedRow) => {
-		if (window.confirm('Do you want to delete this question ?')) {
-			setAddedData((prevState) => {
-				let dataCopy = [...prevState];
-				dataCopy = dataCopy.filter((row) => row != selectedRow);
-				setDifficulty((prevState) => {
-					const dataCopy = { ...prevState };
-					dataCopy[selectedRow.difficulty]--;
-					return dataCopy;
-				});
 				return dataCopy;
 			});
+		} else {
+			setAddedData((prevData) => {
+				const dataCopy = [...prevData];
+				if (dataCopy.indexOf(selectedRow) == -1)
+					dataCopy.push(selectedRow);
+				return dataCopy;
+			});
+		}
+	};
+	const deleteQuestion = (event, selectedRow) => {
+		if (window.confirm('Do you want to delete this question ?')) {
+			if (value === 'objective') {
+				setAddedData((prevState) => {
+					let dataCopy = [...prevState];
+					dataCopy = dataCopy.filter((row) => row != selectedRow);
+					setDifficulty((prevState) => {
+						const dataCopy = { ...prevState };
+						dataCopy[selectedRow.difficulty]--;
+						return dataCopy;
+					});
+					return dataCopy;
+				});
+			} else {
+				setAddedData((prevState) => {
+					let dataCopy = [...prevState];
+					dataCopy = dataCopy.filter((row) => row != selectedRow);
+					return dataCopy;
+				});
+			}
 		}
 	};
 	const boxStyles = {
@@ -348,13 +364,15 @@ const Exam = () => {
 					label={'Exam Description'}
 					style={{ marginBottom: '5%' }}
 				/>
-				<TextField
-					onChange={onChangeTotal}
-					value={total}
-					label={'Total No. of Questions'}
-					style={{ marginBottom: '5%' }}
-					{...inputProps}
-				/>
+				{value === 'objective' ? (
+					<TextField
+						onChange={onChangeTotal}
+						value={total}
+						label={'Total No. of Questions'}
+						style={{ marginBottom: '5%' }}
+						{...inputProps}
+					/>
+				) : null}
 				<Select
 					name='form-field-name'
 					value={selectedClass}
@@ -415,16 +433,18 @@ const Exam = () => {
 					options={options2}
 					style={{ marginBottom: '5%' }}
 				/>
-				<h4>
-					Easy :{' '}
-					{total - difficulty[1] - 2 < 0
-						? 0
-						: total - difficulty[1] - 2}{' '}
-					Medium :{total - difficulty[2]} Hard :{' '}
-					{total - difficulty[3] - 2 < 0
-						? 0
-						: total - difficulty[3] - 2}
-				</h4>
+				{value === 'objective' ? (
+					<h4>
+						Easy :{' '}
+						{total - difficulty[1] - 2 < 0
+							? 0
+							: total - difficulty[1] - 2}{' '}
+						Medium :{total - difficulty[2]} Hard :{' '}
+						{total - difficulty[3] - 2 < 0
+							? 0
+							: total - difficulty[3] - 2}
+					</h4>
+				) : null}
 				<MaterialTable
 					title='Questions'
 					data={data}
