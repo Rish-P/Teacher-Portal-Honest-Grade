@@ -304,13 +304,15 @@ const Exam = () => {
 		flexDirection: 'column',
 		width: '20%',
 		margin: '3%',
+		marginLeft: '20%',
 	};
 
 	const boxStyles2 = {
 		display: 'flex',
 		flexDirection: 'column',
-		width: '80%',
+		width: '75%',
 		margin: '3%',
+		marginLeft: '20%',
 	};
 	const dateFormatter = (str) => {
 		return str;

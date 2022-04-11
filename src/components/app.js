@@ -13,13 +13,14 @@ function App() {
 		fontFamily: 'Noto Serif Display',
 		width: '50%',
 		margin: '1%',
+		marginLeft: '20%',
 	};
 	const boxStyles2 = {
 		display: 'flex',
 		flexDirection: 'column',
 		fontFamily: 'Noto Serif Display',
 		width: '50%',
-		marginLeft: '3%',
+		marginLeft: '20%',
 	};
 	const cardStyle = {
 		width: '35vw',
