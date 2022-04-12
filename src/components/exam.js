@@ -413,28 +413,44 @@ const Exam = () => {
 						rifmFormatter={dateFormatter}
 					/>
 				</MuiPickersUtilsProvider>
-				<Button variant='contained' onClick={handleSubmit}>
+				<Button
+					variant='contained'
+					onClick={handleSubmit}
+					style={{
+						backgroundColor: 'black',
+						color: 'white',
+						fontFamily: 'inherit',
+						fontSize: '18px',
+						width: '40%',
+						marginTop: '5%',
+						marginLeft: '30%',
+						fontWeight: 'bold',
+						borderRadius: '4px',
+					}}
+				>
 					Submit
 				</Button>
 			</Box>
 			<Box style={boxStyles2}>
 				<h2>Add Questions</h2>
-				<Select
-					name='form-field-name'
-					value={selectedTopic}
-					onChange={changeTopic}
-					searchable={false}
-					options={options1}
-					style={{ marginBottom: '5%' }}
-				/>
-				<Select
-					name='form-field-name'
-					value={selectedOption}
-					onChange={changeOption}
-					searchable={false}
-					options={options2}
-					style={{ marginBottom: '5%' }}
-				/>
+				<div style={{ marginBottom: '1%', zIndex: '102' }}>
+					<Select
+						name='form-field-name'
+						value={selectedTopic}
+						onChange={changeTopic}
+						searchable={false}
+						options={options1}
+					/>
+				</div>
+				<div style={{ marginBottom: '1%', zIndex: '101' }}>
+					<Select
+						name='form-field-name'
+						value={selectedOption}
+						onChange={changeOption}
+						searchable={false}
+						options={options2}
+					/>
+				</div>
 				{value === 'objective' ? (
 					<h4>
 						Easy :{' '}
@@ -458,6 +474,7 @@ const Exam = () => {
 							onClick: addQuestion,
 						},
 					]}
+					style={{ marginBottom: '2%' }}
 				/>
 				<MaterialTable
 					title='Added Questions'

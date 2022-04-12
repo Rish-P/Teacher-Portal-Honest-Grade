@@ -31,8 +31,22 @@ const Teacher = () => {
 				onChange={onTextChange}
 				value={teacher}
 				label={'Teacher Name'} //optional
+				style={{ marginBottom: '5%' }}
 			/>
-			<Button variant='contained' onClick={addTeacher} primary>
+			<Button
+				variant='contained'
+				onClick={addTeacher}
+				style={{
+					backgroundColor: 'black',
+					color: 'white',
+					fontFamily: 'inherit',
+					fontSize: '18px',
+					width: '40%',
+					marginLeft: '30%',
+					fontWeight: 'bold',
+					borderRadius: '4px',
+				}}
+			>
 				Submit
 			</Button>
 		</Box>

@@ -13,6 +13,7 @@ import { FiHome, FiLogOut } from 'react-icons/fi';
 import { BiChalkboard } from 'react-icons/bi';
 import { HiOutlineBookOpen } from 'react-icons/hi';
 import { ImBooks } from 'react-icons/im';
+import { MdAddCircleOutline } from 'react-icons/md';
 import { BsFillFilePersonFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
@@ -51,12 +52,20 @@ const Header = () => {
 							</MenuItem>
 
 							<MenuItem
-								icon={<FaQuestion />}
+								icon={<MdAddCircleOutline />}
 								active={'/question' === activeItem}
 								onClick={activeItemClick}
 							>
-								Questions
+								Add Questions
 								<Link to='/question' />
+							</MenuItem>
+							<MenuItem
+								icon={<FaQuestion />}
+								active={'/question/view' === activeItem}
+								onClick={activeItemClick}
+							>
+								View Questions
+								<Link to='/question/view' />
 							</MenuItem>
 							<MenuItem
 								icon={<FaChalkboardTeacher />}

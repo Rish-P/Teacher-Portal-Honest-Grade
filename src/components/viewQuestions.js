@@ -7,7 +7,7 @@ import MaterialTable from 'material-table';
 const boxStyles = {
 	display: 'flex',
 	flexDirection: 'column',
-	width: '80%',
+	width: '75%',
 	margin: '3%',
 	marginLeft: '20%',
 };
@@ -150,22 +150,25 @@ const ViewQuestions = () => {
 	};
 	return (
 		<Box style={boxStyles}>
-			<Select
-				name='form-field-name'
-				value={selectedTopic}
-				onChange={changeTopic}
-				searchable={false}
-				options={options1}
-				style={{ marginBottom: '5%' }}
-			/>
-			<Select
-				name='form-field-name'
-				value={selectedOption}
-				onChange={changeOption}
-				searchable={false}
-				options={options2}
-				style={{ marginBottom: '5%' }}
-			/>
+			<h2>View Questions</h2>
+			<div style={{ marginBottom: '1%', zIndex: '102' }}>
+				<Select
+					name='form-field-name'
+					value={selectedTopic}
+					onChange={changeTopic}
+					searchable={false}
+					options={options1}
+				/>
+			</div>
+			<div style={{ marginBottom: '1%', zIndex: '101' }}>
+				<Select
+					name='form-field-name'
+					value={selectedOption}
+					onChange={changeOption}
+					searchable={false}
+					options={options2}
+				/>
+			</div>
 			<MaterialTable title='Questions' data={data} columns={columns} />
 		</Box>
 	);

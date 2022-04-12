@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, ListItemButton } from '@mui/material';
 import axios from 'axios';
-import { List, ListItem, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemText, Divider } from '@material-ui/core';
 
 const ViewClasses = (props) => {
 	const [classes, setClasses] = useState([]);
@@ -38,11 +38,14 @@ const ViewClasses = (props) => {
 			<h3>My Classes</h3>
 			<List>
 				{classes.map((c) => (
-					<ListItem disablePadding>
-						<ListItemButton onClick={() => clickClass(c._id)}>
-							<ListItemText primary={c.name} />
-						</ListItemButton>
-					</ListItem>
+					<div>
+						<ListItem disablePadding>
+							<ListItemButton onClick={() => clickClass(c._id)}>
+								<ListItemText primary={c.name} />
+							</ListItemButton>
+						</ListItem>
+						<Divider />
+					</div>
 				))}
 			</List>
 		</Box>

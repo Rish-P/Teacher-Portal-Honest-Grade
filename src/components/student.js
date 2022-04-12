@@ -61,21 +61,53 @@ const Student = () => {
 			<TextField
 				onChange={onStudentNameChange}
 				value={student}
-				label={'Student Name'} //optional
+				label={'Name of Student'} //optional
+				style={{ marginBottom: '5%' }}
 			/>
 			<TextField
 				onChange={onUserIDChange}
 				value={userID}
-				label={'UserID'} //optional
+				label={'User ID'} //optional
+				style={{ marginBottom: '5%' }}
 			/>
 			<TextField
 				onChange={onPasswordChange}
 				value={password}
-				label={'password'} //optional
+				label={'Password'} //optional
+				style={{ marginBottom: '5%' }}
+				type='password'
 			/>
-			<Select options={classes} onChange={onSelectedClassChange} />
-			<Button variant='contained' onClick={handleSubmit}>
-				Add Student
+			<div
+				style={{
+					marginBottom: '5%',
+					fontSize: '17px',
+					zIndex: '101',
+				}}
+			>
+				Class:
+				<Select
+					name='form-field-name'
+					value={selectedClass}
+					onChange={onSelectedClassChange}
+					searchable={false}
+					options={classes}
+				/>
+			</div>
+			<Button
+				variant='contained'
+				onClick={handleSubmit}
+				style={{
+					backgroundColor: 'black',
+					color: 'white',
+					fontFamily: 'inherit',
+					fontSize: '18px',
+					width: '40%',
+					marginLeft: '30%',
+					fontWeight: 'bold',
+					borderRadius: '4px',
+				}}
+			>
+				Add
 			</Button>
 		</Box>
 	);

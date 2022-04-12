@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { MdOutlineAccountCircle } from 'react-icons/md';
 
 const Header = () => {
 	const active = {
@@ -10,24 +11,30 @@ const Header = () => {
 		fontFamily: 'Noto Serif Display',
 		color: 'white',
 		textDecoration: 'none',
-		fontSize: '20px',
+		fontSize: '22px',
 	};
 	const header = {
+		position: '-webkit-sticky',
+		position: 'sticky',
+		top: '0px',
+		zIndex: '9999',
 		display: 'flex',
-		justifyContent: 'space-evenly',
+		justifyContent: 'space-between',
+		paddingLeft: '3%',
+		paddingRight: '3%',
 		listStyle: 'none',
 		textDecoration: 'none',
 		backgroundColor: 'black',
-		paddingTop: '1%',
-		paddingBottom: '1%',
+		paddingTop: '0.8%',
+		paddingBottom: '0.8%',
 		fontSize: '16px',
 	};
 	return (
 		<div style={header}>
-			<NavLink exact to='/' style={linkStyle} activeStyle={active}>
-				Home
+			<NavLink exact to='/' style={linkStyle}>
+				Honest Grade.
 			</NavLink>
-			<NavLink to='/teacher' style={linkStyle} activeStyle={active}>
+			{/* <NavLink to='/teacher' style={linkStyle} activeStyle={active}>
 				Teacher
 			</NavLink>
 			<NavLink to='/question' style={linkStyle} activeStyle={active}>
@@ -41,9 +48,9 @@ const Header = () => {
 			</NavLink>
 			<NavLink to='/student' style={linkStyle} activeStyle={active}>
 				Student
-			</NavLink>
+			</NavLink> */}
 			<NavLink to='/topics' style={linkStyle} activeStyle={active}>
-				Topics
+				<MdOutlineAccountCircle style={{ fontSize: '26px' }} />
 			</NavLink>
 		</div>
 	);
