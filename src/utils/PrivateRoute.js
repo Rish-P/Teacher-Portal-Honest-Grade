@@ -5,7 +5,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
     let teacherDetails = localStorage.getItem("teacher_details");
     return (
         <Route {...rest} render={props => (
-            teacherDetails ?
+            teacherDetails!==null ?
                 <Component {...props} />
                 : <Redirect to="/login" />
         )} />
