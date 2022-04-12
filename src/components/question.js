@@ -42,6 +42,7 @@ const Question = () => {
 		setAnswerDesc(e.target.value);
 	};
 	const changeAnswer = (e) => {
+		console.log(e)
 		setAnswer(e);
 	};
 	const changeDifficulty = (e) => {
@@ -53,15 +54,36 @@ const Question = () => {
 	const changeOptions = (e) => {
 		const temp = e.target.value.split(',');
 		setOptions(temp);
+		let obj = []
+		temp.forEach((option) => {
+			obj.push({label:option,value:option});
+		})
+		console.log(obj)
+		setAnswerOps(obj)
 	};
 	const handleSubmit = () => {
-		const optionsArr = options.split(',');
-		console.log(optionsArr);
+		// const optionsArr = options.split(',');
+		// console.log(optionsArr);
+		let tempOpt =[]
+		options.forEach(opt=>{
+			console.log(opt);
+			tempOpt.push(opt);
+		})
+		console.log({
+			question: question,
+			options: tempOpt,
+			answer: answer.value,
+			topic: selectedTopic.value,
+			teacher: '612923ef022ffa2284465389',
+			difficulty: difficulty,
+			privateFlag: false,
+			answerDescription: answerDesc,
+		});
 		axios
 			.post('https://honestgrade.herokuapp.com/questions/add', {
 				question: question,
-				options: options,
-				answer: answer.val,
+				options: tempOpt,
+				answer: answer.value,
 				topic: selectedTopic.value,
 				teacher: '612923ef022ffa2284465389',
 				difficulty: difficulty,
@@ -70,6 +92,7 @@ const Question = () => {
 			})
 			.then((res) => console.log(res))
 			.catch((err) => console.log(err));
+
 	};
 	const boxStyles = {
 		display: 'flex',
