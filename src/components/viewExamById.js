@@ -42,7 +42,7 @@ const ViewExamById = (props) => {
             }
             <h3>Turn Ins:{assessmentData.length}</h3>
             <h3>Assessment Data</h3>
-            {assessmentData.map(a => <div onClick={()=>{clickAssessment(a._id)}}><h2>{a.student.name} - {a.violationCount ? a.violationCount : 0}</h2></div>)}
+            {assessmentData.map(a => <div onClick={clickAssessment(a._id)}><h2>{a.student.name} - {a.violationCount ? a.violationCount : 0}</h2></div>)}
         </Box>)
 }
 
