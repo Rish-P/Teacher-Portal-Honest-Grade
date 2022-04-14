@@ -11,7 +11,7 @@ const Header = () => {
 		fontFamily: 'Noto Serif Display',
 		color: 'white',
 		textDecoration: 'none',
-		fontSize: '22px',
+		fontSize: '24px',
 	};
 	const header = {
 		position: '-webkit-sticky',

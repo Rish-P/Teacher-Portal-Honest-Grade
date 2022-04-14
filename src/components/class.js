@@ -66,12 +66,8 @@ const Class = () => {
 			>
 				Submit
 			</Button>
-			<Box style={boxStyles2}>
-				<h2>View Classes</h2>
-				<Box style={cardStyle}>
-					<ViewClasses></ViewClasses>
-				</Box>
-			</Box>
+			<h2>View Classes</h2>
+			<ViewClasses></ViewClasses>
 		</Box>
 	);
 };

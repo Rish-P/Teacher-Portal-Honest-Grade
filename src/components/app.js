@@ -45,12 +45,8 @@ function App() {
 						You do not have any upcoming tests !
 					</h3>
 				</Box>
-			</Box>
-			<Box style={boxStyles2}>
 				<h2>View Classes</h2>
-				<Box style={cardStyle}>
-					<ViewClasses></ViewClasses>
-				</Box>
+				<ViewClasses></ViewClasses>
 			</Box>
 		</React.Fragment>
 	);
