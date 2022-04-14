@@ -127,14 +127,28 @@ const Question = () => {
 		);
 		const keywordsArr = keywords.split(',');
 		const impKeywordsArr = impKeywords.split(',');
+		console.log("ANS",answer);
+		console.log("REQ.BODY",{
+			question: question,
+			options: undefined,
+			answer: answerSubjective,
+			topic: selectedTopic.value,
+			teacher: teacher_details._id,
+			difficulty: 0,
+			private: false,
+			answerDescription: answerDesc,
+			outOf,
+			keywords: keywordsArr,
+			impKeywords: impKeywordsArr,
+		})
 		axios
-			.post('https://honestgrade.herokuapp.com/questions/addSub', {
+			.post('https://honestgrade.herokuapp.com/questions/addSubjectiveQuestion', {
 				question: question,
 				options: undefined,
-				answer: answer.value,
+				answer: answerSubjective,
 				topic: selectedTopic.value,
 				teacher: teacher_details._id,
-				difficulty: undefined,
+				difficulty: 0,
 				private: false,
 				answerDescription: answerDesc,
 				outOf,

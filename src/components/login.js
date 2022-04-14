@@ -51,7 +51,7 @@ function Login(props) {
         props.history.push('/');
     }
     return(
-        <div>
+        <div style={{marginLeft: '200' }}>
             <h1>Login</h1>
             <form>
                 <div >

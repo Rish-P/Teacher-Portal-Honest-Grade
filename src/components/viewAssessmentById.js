@@ -32,7 +32,7 @@ const ViewAssessmentById = (props) => {
         }
     }
     return (
-        <Box style={{margin: 25}}>
+        <Box style={{margin: 25,marginLeft: 250}}>
             Assessment Details
             <h2>Score: {assessment.score}</h2>
             <h3>Total Marks:{assessment.totalMarks}</h3>
