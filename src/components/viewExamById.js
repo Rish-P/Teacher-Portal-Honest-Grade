@@ -95,16 +95,17 @@ const ViewExamById = (props) => {
 					assessmentData.map((a, i) => (
 						<div>
 							<ListItem disablePadding>
-								<ListItemButton>
+								<ListItemButton
+									onClick={() => clickAssessment(a._id)}
+								>
 									<ListItemText
-										primary={`${a.student.name} |
+										primary={`${i + 1}. ${a.student.name} |
                                             ${
 												a.violationCount
 													? `Number of Violations: ${a.violationCount}`
 													: 0
 											} | 
                                             Score: ${a.score}`}
-										onClick={() => clickAssessment(a._id)}
 									/>
 								</ListItemButton>
 							</ListItem>
@@ -134,7 +135,7 @@ const ViewExamById = (props) => {
 							<ListItem disablePadding>
 								<ListItemButton>
 									<ListItemText
-										primary={`${i}. ${q.question}`}
+										primary={`${i + 1}. ${q.question}`}
 									/>
 								</ListItemButton>
 							</ListItem>

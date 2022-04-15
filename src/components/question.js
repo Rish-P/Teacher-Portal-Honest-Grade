@@ -97,10 +97,10 @@ const Question = () => {
 		const optionsArr = [option1, option2, option3, option4];
 		const difficultyNumber =
 			difficulty.value === 'Easy'
-				? 0
-				: difficulty.value === 'Medium'
 				? 1
-				: 2;
+				: difficulty.value === 'Medium'
+				? 2
+				: 3;
 		const teacher_details = JSON.parse(
 			localStorage.getItem('user_details')
 		);
@@ -118,7 +118,9 @@ const Question = () => {
 				private: false,
 				answerDescription: answerDesc,
 			})
-			.then((res) => console.log(res))
+			.then((res) => {
+				console.log(res);
+			})
 			.catch((err) => console.log(err));
 	}; //outof//keywords//importantkeywords
 	const handleSubmitSubjective = () => {
@@ -127,8 +129,8 @@ const Question = () => {
 		);
 		const keywordsArr = keywords.split(',');
 		const impKeywordsArr = impKeywords.split(',');
-		console.log("ANS",answer);
-		console.log("REQ.BODY",{
+		console.log('ANS', answer);
+		console.log('REQ.BODY', {
 			question: question,
 			options: undefined,
 			answer: answerSubjective,
@@ -140,21 +142,24 @@ const Question = () => {
 			outOf,
 			keywords: keywordsArr,
 			impKeywords: impKeywordsArr,
-		})
+		});
 		axios
-			.post('https://honestgrade.herokuapp.com/questions/addSubjectiveQuestion', {
-				question: question,
-				options: undefined,
-				answer: answerSubjective,
-				topic: selectedTopic.value,
-				teacher: teacher_details._id,
-				difficulty: 0,
-				private: false,
-				answerDescription: answerDesc,
-				outOf,
-				keywords: keywordsArr,
-				impKeywords: impKeywordsArr,
-			})
+			.post(
+				'https://honestgrade.herokuapp.com/questions/addSubjectiveQuestion',
+				{
+					question: question,
+					options: undefined,
+					answer: answerSubjective,
+					topic: selectedTopic.value,
+					teacher: teacher_details._id,
+					difficulty: 0,
+					private: false,
+					answerDescription: answerDesc,
+					outOf,
+					keywords: keywordsArr,
+					impKeywords: impKeywordsArr,
+				}
+			)
 			.then((res) => console.log(res))
 			.catch((err) => console.log(err));
 	};
@@ -286,7 +291,7 @@ const Question = () => {
 							zIndex: '101',
 						}}
 					>
-						Class:
+						Topic:
 						<Select
 							name='form-field-name'
 							value={selectedTopic}

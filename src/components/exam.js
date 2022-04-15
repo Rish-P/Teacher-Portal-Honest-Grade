@@ -400,6 +400,7 @@ const Exam = () => {
 						{...inputProps}
 					/>
 				) : null}
+				Class:
 				<Select
 					name='form-field-name'
 					value={selectedClass}
