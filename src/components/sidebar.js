@@ -28,6 +28,7 @@ const Header = () => {
 	};
 	const logoutItemClick = () => {
 		localStorage.removeItem('teacher_details');
+		window.location.reload();
 	};
 
 	return (

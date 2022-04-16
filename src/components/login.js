@@ -36,6 +36,7 @@ function Login(props) {
 						'teacher_details',
 						JSON.stringify(response.data.teacher)
 					);
+
 					redirectToHome();
 				} else if (response.data.success === -10) {
 					alert('Username and password do not match');
@@ -49,7 +50,7 @@ function Login(props) {
 			});
 	};
 	const redirectToHome = () => {
-		props.history.push('/');
+		window.location.href = '/'
 	};
 	const boxStyles = {
 		display: 'flex',
