@@ -26,6 +26,9 @@ const Header = () => {
 		setActiveItem(window.location.pathname);
 		console.log(activeItem);
 	};
+	const logoutItemClick = () => {
+		localStorage.removeItem('teacher_details');
+	};
 
 	return (
 		<>
@@ -103,7 +106,7 @@ const Header = () => {
 					</SidebarContent>
 					<SidebarFooter>
 						<Menu iconShape='square'>
-							<MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+							<MenuItem icon={<FiLogOut />} onClick={logoutItemClick}>Logout</MenuItem>
 						</Menu>
 					</SidebarFooter>
 				</ProSidebar>
