@@ -100,7 +100,9 @@ const ViewStudentById = (props) => {
 									<ListItemButton
 										onClick={() => clickExam(c._id)}
 									>
-										<ListItemText primary={c.name} />
+										<ListItemText
+											primary={c.exam[0]?.name}
+										/>
 									</ListItemButton>
 								</ListItem>
 								{i + 1 < exams.length ? <Divider /> : null}
@@ -122,9 +124,9 @@ const ViewStudentById = (props) => {
 					)
 				) : (
 					<h3
-						style={{ fontFamily: 'Avenir Next', marginLeft: '16%' }}
+						style={{ fontFamily: 'Avenir Next', marginLeft: '20%' }}
 					>
-						This student does not have any tests in this class.
+						There are no tests in this class.
 					</h3>
 				)}
 			</List>
