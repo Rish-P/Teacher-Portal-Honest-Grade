@@ -32,7 +32,8 @@ const ViewExamById = (props) => {
 				if (res.data.success === 1) {
 					setLoadedAssessment(true);
 					setExamData(temp[0]);
-					setAssessmentData(temp2);
+					if (temp2.length !== 0) setAssessmentData(temp2);
+					else setAssessmentData(undefined);
 				}
 			})
 			.catch((err) => console.log(err));
@@ -112,7 +113,7 @@ const ViewExamById = (props) => {
 
 					<h2>Assessment Details</h2>
 					<List style={cardStyle}>
-						{assessmentData.length !== 0 ? (
+						{assessmentData !== undefined ? (
 							loadedAssessment ? (
 								assessmentData.map((a, i) => (
 									<div>
