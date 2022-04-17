@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { MdOutlineAccountCircle } from 'react-icons/md';
 
 const Header = () => {
+	const teacher_details = JSON.parse(localStorage.getItem('teacher_details'));
+
 	const active = {
 		color: 'lightblue',
 		fontWeight: 'bold',
@@ -29,7 +31,7 @@ const Header = () => {
 		paddingBottom: '0.8%',
 		fontSize: '16px',
 	};
-	return (
+	return teacher_details !== null ? (
 		<div style={header}>
 			<NavLink exact to='/' style={linkStyle}>
 				Honest Grade.
@@ -51,6 +53,12 @@ const Header = () => {
 			</NavLink> */}
 			<NavLink to='/topics' style={linkStyle} activeStyle={active}>
 				<MdOutlineAccountCircle style={{ fontSize: '26px' }} />
+			</NavLink>
+		</div>
+	) : (
+		<div style={{ ...header, justifyContent: 'center' }}>
+			<NavLink exact to='/' style={linkStyle}>
+				Honest Grade.
 			</NavLink>
 		</div>
 	);

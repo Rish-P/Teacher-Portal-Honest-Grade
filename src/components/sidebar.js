@@ -30,88 +30,97 @@ const Header = () => {
 		localStorage.removeItem('teacher_details');
 		window.location.reload();
 	};
-
+	const teacher_details = JSON.parse(localStorage.getItem('teacher_details'));
 	return (
 		<>
-			<div id='header'>
-				<ProSidebar>
-					<SidebarHeader></SidebarHeader>
-					<SidebarContent>
-						<Menu iconShape='circle'>
-							<MenuItem
-								active={'/' === activeItem}
-								icon={<FiHome />}
-								onClick={activeItemClick}
-							>
-								Home
-								<Link exact to='/' />
-							</MenuItem>
-							<MenuItem
-								active={'/teacher' === activeItem}
-								onClick={activeItemClick}
-								icon={<BiChalkboard />}
-							>
-								Teachers
-								<Link to='/teacher' />
-							</MenuItem>
+			{teacher_details !== null ? (
+				<div id='header'>
+					<ProSidebar>
+						<SidebarHeader></SidebarHeader>
+						<SidebarContent>
+							<Menu iconShape='circle'>
+								<MenuItem
+									active={'/' === activeItem}
+									icon={<FiHome />}
+									onClick={activeItemClick}
+								>
+									Home
+									<Link exact to='/' />
+								</MenuItem>
+								<MenuItem
+									active={'/teacher' === activeItem}
+									onClick={activeItemClick}
+									icon={<BiChalkboard />}
+								>
+									Teachers
+									<Link to='/teacher' />
+								</MenuItem>
 
-							<MenuItem
-								icon={<MdAddCircleOutline />}
-								active={'/question' === activeItem}
-								onClick={activeItemClick}
-							>
-								Add Questions
-								<Link to='/question' />
-							</MenuItem>
-							<MenuItem
-								icon={<FaQuestion />}
-								active={'/question/view' === activeItem}
-								onClick={activeItemClick}
-							>
-								View Questions
-								<Link to='/question/view' />
-							</MenuItem>
-							<MenuItem
-								icon={<FaChalkboardTeacher />}
-								active={'/class' === activeItem}
-								onClick={activeItemClick}
-							>
-								Classes
-								<Link to='/class' />
-							</MenuItem>
-							<MenuItem
-								icon={<HiOutlineBookOpen />}
-								active={'/exam' === activeItem}
-								onClick={activeItemClick}
-							>
-								Exams
-								<Link to='/exam' />
-							</MenuItem>
-							<MenuItem
-								icon={<BsFillFilePersonFill />}
-								active={'/student' === activeItem}
-								onClick={activeItemClick}
-							>
-								Students
-								<Link to='/student' />
-							</MenuItem>
-							<MenuItem
-								icon={<ImBooks />}
-								active={'/topics' === activeItem}
-								onClick={activeItemClick}
-							>
-								Topics
-								<Link to='/topics' />
-							</MenuItem>
-						</Menu>
-					</SidebarContent>
-					<SidebarFooter>
-						<Menu iconShape='square'>
-							<MenuItem icon={<FiLogOut />} onClick={logoutItemClick}>Logout</MenuItem>
-						</Menu>
-					</SidebarFooter>
-				</ProSidebar>
-			</div>
+								<MenuItem
+									icon={<MdAddCircleOutline />}
+									active={'/question' === activeItem}
+									onClick={activeItemClick}
+								>
+									Add Questions
+									<Link to='/question' />
+								</MenuItem>
+								<MenuItem
+									icon={<FaQuestion />}
+									active={'/question/view' === activeItem}
+									onClick={activeItemClick}
+								>
+									View Questions
+									<Link to='/question/view' />
+								</MenuItem>
+								<MenuItem
+									icon={<FaChalkboardTeacher />}
+									active={'/class' === activeItem}
+									onClick={activeItemClick}
+								>
+									Classes
+									<Link to='/class' />
+								</MenuItem>
+								<MenuItem
+									icon={<HiOutlineBookOpen />}
+									active={'/exam' === activeItem}
+									onClick={activeItemClick}
+								>
+									Exams
+									<Link to='/exam' />
+								</MenuItem>
+								<MenuItem
+									icon={<BsFillFilePersonFill />}
+									active={'/student' === activeItem}
+									onClick={activeItemClick}
+								>
+									Students
+									<Link to='/student' />
+								</MenuItem>
+								<MenuItem
+									icon={<ImBooks />}
+									active={'/topics' === activeItem}
+									onClick={activeItemClick}
+								>
+									Topics
+									<Link to='/topics' />
+								</MenuItem>
+							</Menu>
+						</SidebarContent>
+						<SidebarFooter>
+							<Menu iconShape='square'>
+								<MenuItem
+									icon={<FiLogOut />}
+									onClick={logoutItemClick}
+								>
+									Logout
+								</MenuItem>
+							</Menu>
+						</SidebarFooter>
+					</ProSidebar>
+				</div>
+			) : (
+				''
+			)}
 		</>
 	);
 };

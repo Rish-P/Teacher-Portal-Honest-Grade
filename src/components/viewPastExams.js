@@ -5,28 +5,28 @@ import { List, ListItem, ListItemText, Divider } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { RotatingLines } from 'react-loader-spinner';
 
-const ViewClasses = (props) => {
-	const [classes, setClasses] = useState([]);
+const ViewPastExams = (props) => {
+	const [exams, setExams] = useState([]);
 	const [loaded, setLoaded] = useState(false);
 	let teacherData = JSON.parse(localStorage.getItem('teacher_details'));
 	let history = useHistory();
 	useEffect(() => {
 		//get topics from request
 		axios
-			.post('https://honestgrade.herokuapp.com/class/get', {
+			.post('https://honestgrade.herokuapp.com/exam/getPastExams', {
 				teacher: teacherData._id,
 			})
 			.then((res) => {
-				const temp = res.data.classes;
+				const temp = res.data.exams;
 				console.log(res.data);
 				setLoaded(true);
-				setClasses(temp);
+				setExams(temp);
 				console.log(temp);
 			})
 			.catch((err) => console.log(err));
 	}, []);
-	function clickClass(id) {
-		let link = '/class/view/' + id;
+	function clickExam(id) {
+		let link = '/exam/view/' + id;
 		history.push(link);
 	}
 	const boxStyles = {
@@ -55,18 +55,18 @@ const ViewClasses = (props) => {
 	return (
 		<Box style={boxStyles}>
 			<List style={cardStyle}>
-				{classes !== undefined ? (
+				{exams !== undefined ? (
 					loaded ? (
-						classes.map((c, i) => (
+						exams.map((c, i) => (
 							<div>
 								<ListItem disablePadding>
 									<ListItemButton
-										onClick={() => clickClass(c._id)}
+										onClick={() => clickExam(c._id)}
 									>
 										<ListItemText primary={c.name} />
 									</ListItemButton>
 								</ListItem>
-								{i + 1 < classes.length ? <Divider /> : null}
+								{i + 1 < exams.length ? <Divider /> : null}
 							</div>
 						))
 					) : (
@@ -83,11 +83,15 @@ const ViewClasses = (props) => {
 						</div>
 					)
 				) : (
-					''
+					<h3
+						style={{ fontFamily: 'Avenir Next', marginLeft: '16%' }}
+					>
+						There are no tests to display.
+					</h3>
 				)}
 			</List>
 		</Box>
 	);
 };
 
-export default ViewClasses;
+export default ViewPastExams;

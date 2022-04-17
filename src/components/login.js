@@ -50,7 +50,7 @@ function Login(props) {
 			});
 	};
 	const redirectToHome = () => {
-		window.location.href = '/'
+		window.location.href = '/';
 	};
 	const boxStyles = {
 		display: 'flex',

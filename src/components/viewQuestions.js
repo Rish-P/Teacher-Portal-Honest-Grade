@@ -18,8 +18,14 @@ let options2 = [
 ];
 const ViewQuestions = () => {
 	const [topics, setTopics] = useState([{}]);
-	const [selectedTopic, setSelectedTopic] = useState({});
-	const [selectedOption, setSelectedOption] = useState({});
+	const [selectedTopic, setSelectedTopic] = useState({
+		value: 'Select Topic',
+		label: 'Select Topic',
+	});
+	const [selectedOption, setSelectedOption] = useState({
+		value: 'Select Type',
+		label: 'Select Type',
+	});
 	const [columns, setColumns] = useState([]);
 	const [data, setData] = useState([]);
 
