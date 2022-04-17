@@ -24,22 +24,6 @@ const Class = () => {
 		margin: '3%',
 		marginLeft: '20%',
 	};
-	const boxStyles2 = {
-		display: 'flex',
-		flexDirection: 'column',
-		fontFamily: 'Noto Serif Display',
-		width: '50%',
-	};
-	const cardStyle = {
-		width: '35vw',
-		border: '1px solid lightgray',
-		boxShadow: '3px 3px 3px lightgray',
-		padding: '2%',
-		borderRadius: '10px 10px 10px',
-		marginBottom: '2%',
-		backgroundColor: 'white',
-		marginRight: '3%',
-	};
 	return (
 		<Box style={boxStyles}>
 			<h2>Add Class</h2>

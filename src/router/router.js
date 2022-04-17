@@ -18,6 +18,7 @@ import PrivateRoute from '../utils/PrivateRoute';
 import ViewAssessmentById from '../components/viewAssessmentById';
 import Sidebar from '../components/sidebar';
 import ViewStudentById from '../components/viewStudentById';
+import Account from '../components/account';
 
 const ReactRouter = () => {
 	return (
@@ -44,6 +45,7 @@ const ReactRouter = () => {
 				component={ViewExamById}
 			/>
 			<PrivateRoute exact path='/student' component={Student} />
+			<PrivateRoute exact path='/account' component={Account} />
 			<PrivateRoute exact path='/class' component={Class} />
 			<PrivateRoute exact path='/class/view' component={ViewClasses} />
 			<PrivateRoute

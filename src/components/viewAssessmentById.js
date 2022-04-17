@@ -111,7 +111,10 @@ const ViewAssessmentById = (props) => {
 							Name: {loaded ? assessment.student[0].name : ''}
 						</h3>
 						<h3>Score: {assessment.score}</h3>
-						<h3>Total Marks:{assessment.totalMarks}</h3>
+						<h3>Total Marks: {assessment.totalMarks}</h3>
+						<h3>
+							Total Violations: {assessment.violations?.length}
+						</h3>
 					</div>
 					<BarChart
 						width={500}

@@ -54,7 +54,7 @@ const ViewStudentById = (props) => {
 	}, []);
 
 	let clickExam = (val) => {
-		let link = '/exam/view/' + val;
+		let link = '/assessment/view/' + val;
 		history.push(link);
 	};
 	const boxStyles = {
@@ -84,8 +84,8 @@ const ViewStudentById = (props) => {
 	};
 	return (
 		<Box style={boxStyles}>
+			<h2>Student Details</h2>
 			<Box style={cardStyle}>
-				<h2>Student Details</h2>
 				<h3>Name: {students.name}</h3>
 				<h3>Classes: {students.class?.length}</h3>
 				<h3>User ID:{students.userID}</h3>

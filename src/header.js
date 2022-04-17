@@ -51,7 +51,7 @@ const Header = () => {
 			<NavLink to='/student' style={linkStyle} activeStyle={active}>
 				Student
 			</NavLink> */}
-			<NavLink to='/topics' style={linkStyle} activeStyle={active}>
+			<NavLink to='/account' style={linkStyle} activeStyle={active}>
 				<MdOutlineAccountCircle style={{ fontSize: '26px' }} />
 			</NavLink>
 		</div>

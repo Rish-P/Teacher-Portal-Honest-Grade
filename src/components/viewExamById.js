@@ -80,155 +80,184 @@ const ViewExamById = (props) => {
 	};
 	return (
 		<Box style={boxStyles}>
-			<h2>Exam Details</h2>
-			<div style={cardStyle}>
-				<h3>
-					Exam Name:{' '}
-					<span style={{ fontFamily: 'Raleway' }}>
-						{examData.name}
-					</span>
-				</h3>
-				<h3>
-					Scheduled Date:{' '}
-					<span style={{ fontFamily: 'Raleway' }}>
-						{examData.scheduleDate?.split('T')[0]}
-					</span>
-				</h3>
-				<h3>
-					Expiry Date:{' '}
-					<span style={{ fontFamily: 'Raleway' }}>
-						{examData.expiryDate?.split('T')[0]}
-					</span>
-				</h3>
-				<h3>
-					Turn Ins:{' '}
-					<span style={{ fontFamily: 'Raleway' }}>
-						{assessmentData.length}
-					</span>
-				</h3>
-			</div>
+			{examData !== undefined ? (
+				<Box>
+					<h2>Exam Details</h2>
+					<div style={cardStyle}>
+						<h3>
+							Exam Name:{' '}
+							<span style={{ fontFamily: 'Raleway' }}>
+								{examData.name}
+							</span>
+						</h3>
+						<h3>
+							Scheduled Date:{' '}
+							<span style={{ fontFamily: 'Raleway' }}>
+								{examData.scheduleDate?.split('T')[0]}
+							</span>
+						</h3>
+						<h3>
+							Expiry Date:{' '}
+							<span style={{ fontFamily: 'Raleway' }}>
+								{examData.expiryDate?.split('T')[0]}
+							</span>
+						</h3>
+						<h3>
+							Turn Ins:{' '}
+							<span style={{ fontFamily: 'Raleway' }}>
+								{assessmentData.length}
+							</span>
+						</h3>
+					</div>
 
-			<h2>Assessment Details</h2>
-			<List style={cardStyle}>
-				{assessmentData.length !== 0 ? (
-					loadedAssessment ? (
-						assessmentData.map((a, i) => (
-							<div>
-								<ListItem disablePadding>
-									<ListItemButton
-										onClick={() => clickAssessment(a._id)}
-									>
-										<ListItemText
-											primary={`${i + 1}. ${
-												a.student.name
-											} |
+					<h2>Assessment Details</h2>
+					<List style={cardStyle}>
+						{assessmentData.length !== 0 ? (
+							loadedAssessment ? (
+								assessmentData.map((a, i) => (
+									<div>
+										<ListItem disablePadding>
+											<ListItemButton
+												onClick={() =>
+													clickAssessment(a._id)
+												}
+											>
+												<ListItemText
+													primary={`${i + 1}. ${
+														a.student.name
+													} |
                                             ${
 												a.violationCount
 													? `Number of Violations: ${a.violationCount}`
 													: 0
 											} | 
                                             Score: ${a.score}`}
-										/>
-									</ListItemButton>
-								</ListItem>
-								{i + 1 < a.student.length ? <Divider /> : null}
-							</div>
-						))
-					) : (
-						<div style={loaderStyles}>
-							<RotatingLines
-								width='50'
-								strokeColor='grey'
-								strokeWidth='1'
-								animationDuration='1'
-								type='Circles'
-								color='black'
-								height='50'
-								timeout={10000}
-							/>
-						</div>
-					)
-				) : (
-					<h3 style={{ fontFamily: 'Avenir Next', marginLeft: '2%' }}>
-						There are no turn ins yet.
-					</h3>
-				)}
-			</List>
-			<h2>Questions</h2>
-			<List style={cardStyle}>
-				{examData && examData.questions ? (
-					examData.questions.map((q, i) => (
-						<div>
-							<ListItem disablePadding>
-								<ListItemButton
-									onClick={() =>
-										handleOpen(
-											q.question,
-											q.options,
-											q.answer
-										)
-									}
-								>
-									<ListItemText
-										primary={`${i + 1}. ${q.question}`}
+												/>
+											</ListItemButton>
+										</ListItem>
+										{i + 1 < a.student.length ? (
+											<Divider />
+										) : null}
+									</div>
+								))
+							) : (
+								<div style={loaderStyles}>
+									<RotatingLines
+										width='50'
+										strokeColor='grey'
+										strokeWidth='1'
+										animationDuration='1'
+										type='Circles'
+										color='black'
+										height='50'
+										timeout={10000}
 									/>
-								</ListItemButton>
-							</ListItem>
-							{i + 1 < examData.questions.length ? (
-								<Divider />
-							) : null}
-						</div>
-					))
-				) : (
-					<div style={loaderStyles}>
-						<RotatingLines
-							width='50'
-							strokeColor='grey'
-							strokeWidth='1'
-							animationDuration='1'
-							type='Circles'
-							color='black'
-							height='50'
-							timeout={10000}
-						/>
-					</div>
-				)}
-			</List>
-			<Modal open={open} onClose={handleClose}>
-				<Box sx={modalStyle}>
-					<Typography
-						id='modal-modal-title'
-						variant='h6'
-						component='h2'
-						style={{
-							fontFamily: 'Noto Serif Display',
-							marginLeft: '1%',
-							marginBottom: '4%',
-						}}
-					>
-						{modalData[0]}
-					</Typography>
-					<Typography
-						id='modal-modal-description'
-						sx={{ mt: 2 }}
-						style={{
-							fontFamily: 'Avenir Next',
-							marginLeft: '1%',
-						}}
-					>
-						Options: {modalData[1]?.join(', ')}
-						<br />
-						<div
-							style={{
-								marginTop: '4%',
-								marginBottom: '2%',
-							}}
-						>
-							Answer: {modalData[2]}
-						</div>
-					</Typography>
+								</div>
+							)
+						) : (
+							<h3
+								style={{
+									fontFamily: 'Avenir Next',
+									marginLeft: '2%',
+								}}
+							>
+								There are no turn ins yet.
+							</h3>
+						)}
+					</List>
+					<h2>Questions</h2>
+					<List style={cardStyle}>
+						{examData && examData.questions ? (
+							examData.questions.map((q, i) => (
+								<div>
+									<ListItem disablePadding>
+										<ListItemButton
+											onClick={() =>
+												handleOpen(
+													q.question,
+													q.options,
+													q.answer
+												)
+											}
+										>
+											<ListItemText
+												primary={`${i + 1}. ${
+													q.question
+												}`}
+											/>
+										</ListItemButton>
+									</ListItem>
+									{i + 1 < examData.questions.length ? (
+										<Divider />
+									) : null}
+								</div>
+							))
+						) : (
+							<div style={loaderStyles}>
+								<RotatingLines
+									width='50'
+									strokeColor='grey'
+									strokeWidth='1'
+									animationDuration='1'
+									type='Circles'
+									color='black'
+									height='50'
+									timeout={10000}
+								/>
+							</div>
+						)}
+					</List>
+					<Modal open={open} onClose={handleClose}>
+						<Box sx={modalStyle}>
+							<Typography
+								id='modal-modal-title'
+								variant='h6'
+								component='h2'
+								style={{
+									fontFamily: 'Noto Serif Display',
+									marginLeft: '1%',
+									marginBottom: '4%',
+								}}
+							>
+								{modalData[0]}
+							</Typography>
+							<Typography
+								id='modal-modal-description'
+								sx={{ mt: 2 }}
+								style={{
+									fontFamily: 'Avenir Next',
+									marginLeft: '1%',
+								}}
+							>
+								Options: {modalData[1]?.join(', ')}
+								<br />
+								<div
+									style={{
+										marginTop: '4%',
+										marginBottom: '2%',
+									}}
+								>
+									Answer: {modalData[2]}
+								</div>
+							</Typography>
+						</Box>
+					</Modal>
 				</Box>
-			</Modal>
+			) : (
+				<div>
+					<h2>Exam Details</h2>
+					<h3
+						style={{
+							...cardStyle,
+							fontFamily: 'Avenir Next',
+						}}
+					>
+						<span style={{ marginLeft: '28%' }}>
+							This exam no longer exists. Please check again.
+						</span>
+					</h3>
+				</div>
+			)}
 		</Box>
 	);
 };
