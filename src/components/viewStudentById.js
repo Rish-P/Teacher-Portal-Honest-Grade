@@ -21,11 +21,12 @@ const ViewStudentById = (props) => {
 				classID: classID,
 			})
 			.then((res) => {
-				const temp = res.data.students;
+				let temp = res.data.students;
 				console.log(res.data);
 				if (res.data.success === 1) {
-					setStudents(temp);
-					console.log(temp);
+					temp = temp.filter((student) => student._id === studentID);
+					setStudents(temp[0]);
+					console.log(temp[0]);
 				} else {
 					setStudents(undefined);
 				}
@@ -44,7 +45,8 @@ const ViewStudentById = (props) => {
 				console.log(res.data);
 				if (res.data.success === 1) {
 					setLoadedExams(true);
-					setExams(temp);
+					if (temp.length !== 0) setExams(temp);
+					else setExams(undefined);
 					console.log(temp);
 				} else {
 					setExams(undefined);
@@ -87,8 +89,8 @@ const ViewStudentById = (props) => {
 			<h2>Student Details</h2>
 			<Box style={cardStyle}>
 				<h3>Name: {students.name}</h3>
-				<h3>Classes: {students.class?.length}</h3>
-				<h3>User ID:{students.userID}</h3>
+				<h3>No. of Classes: {students.class?.length}</h3>
+				<h3>User ID: {students.userID}</h3>
 			</Box>
 			<h2>Exams</h2>
 			<List style={cardStyle}>
@@ -124,9 +126,9 @@ const ViewStudentById = (props) => {
 					)
 				) : (
 					<h3
-						style={{ fontFamily: 'Avenir Next', marginLeft: '20%' }}
+						style={{ fontFamily: 'Avenir Next', marginLeft: '11%' }}
 					>
-						There are no tests in this class.
+						There are no exams taken by this student.
 					</h3>
 				)}
 			</List>
