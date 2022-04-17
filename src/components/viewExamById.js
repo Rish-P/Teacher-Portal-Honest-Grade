@@ -106,7 +106,7 @@ const ViewExamById = (props) => {
 						<h3>
 							Turn Ins:{' '}
 							<span style={{ fontFamily: 'Raleway' }}>
-								{assessmentData.length}
+								{assessmentData?.length}
 							</span>
 						</h3>
 					</div>
