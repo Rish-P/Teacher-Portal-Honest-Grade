@@ -14,7 +14,7 @@ const ViewPastExams = (props) => {
 		//get topics from request
 		axios
 			.post('https://honestgrade.herokuapp.com/exam/getPastExams', {
-				teacher: teacherData._id,
+				teacherID: teacherData._id,
 			})
 			.then((res) => {
 				const temp = res.data.exams;
@@ -84,7 +84,7 @@ const ViewPastExams = (props) => {
 					)
 				) : (
 					<h3
-						style={{ fontFamily: 'Avenir Next', marginLeft: '16%' }}
+						style={{ fontFamily: 'Avenir Next', marginLeft: '22%' }}
 					>
 						There are no tests to display.
 					</h3>

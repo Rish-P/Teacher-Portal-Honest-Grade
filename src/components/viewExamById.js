@@ -71,7 +71,7 @@ const ViewExamById = (props) => {
 		top: '50%',
 		left: '50%',
 		transform: 'translate(-50%, -50%)',
-		width: '400px',
+		width: '600px',
 		backgroundColor: 'background.paper',
 		border: '1px solid #000',
 		borderRadius: '15px',
@@ -206,7 +206,7 @@ const ViewExamById = (props) => {
 							marginBottom: '4%',
 						}}
 					>
-						Question: {modalData[0]}
+						{modalData[0]}
 					</Typography>
 					<Typography
 						id='modal-modal-description'
@@ -216,9 +216,16 @@ const ViewExamById = (props) => {
 							marginLeft: '1%',
 						}}
 					>
-						Options: {modalData[1]?.join(',')}
+						Options: {modalData[1]?.join(', ')}
 						<br />
-						Answer: {modalData[2]}
+						<div
+							style={{
+								marginTop: '4%',
+								marginBottom: '2%',
+							}}
+						>
+							Answer: {modalData[2]}
+						</div>
 					</Typography>
 				</Box>
 			</Modal>
